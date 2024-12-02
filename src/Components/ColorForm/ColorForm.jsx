@@ -16,7 +16,7 @@ export default function ColorForm({
     onSubmitColor(data);
   }
   return (
-    <form className="color-form" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="role">
         <br />
         <input
@@ -36,13 +36,10 @@ export default function ColorForm({
       <label htmlFor="contrastText">
         contrastText
         <br />
-        <ColorInput
-          id="contrastText"
-          defaultValue={initialData.conrtrastText}
-        />
+        <ColorInput id="contrastText" defaultValue={initialData.contrastText} />
       </label>
       <br />
-      <button type="submit">ADD COLOR</button>
+      <button type="submit">Add Color</button>
     </form>
   );
 }
