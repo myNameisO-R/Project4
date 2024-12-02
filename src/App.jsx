@@ -3,7 +3,8 @@ import { initialColors } from "./lib/colors";
 import "./App.css";
 import { uid } from "uid";
 //import useLocalStorageState from "use-local-storage-state";
-import ColorForm from "./Components/ColorForm/ColorForm.jsx";
+import Color from "./Components/Color/Color";
+import ColorForm from "./Components/ColorForm/ColorForm";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
@@ -22,10 +23,11 @@ function App() {
       {colors.length === 0 ? (
         <p>Add colors</p>
       ) : (
-        colors.map((color) => <color key={color.id} color={color} />)
+        colors.map((color) => {
+          return <Color key={color.id} color={color} />;
+        })
       )}
     </>
   );
 }
-
 export default App;
