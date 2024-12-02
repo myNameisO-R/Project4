@@ -2,17 +2,30 @@ import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
 import "./App.css";
 import { uid } from "uid";
-import ColorForm from "./Components/ColorForm/ColorForm.jsx";
+import ColorForm from "./Components/ColorForm/ColorForm";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  return (
-    <>
-      <h1>Theme Creator</h1>
+  const [colors, setColors] = useLocalStorageState("colors", {
+    defaultValue: initialColors,
+  });
 
-      {initialColors.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}
-    </>
+  function handleSubmitColor(newColor) {
+    setColors([{ id: uid(), ...newColor }, ...colors]);
+    console.log("Colors, colors");
+  }
+
+  return (
+    <div className="app">
+      <h1>Theme Creator</h1>
+      <colorForm onSubmitColor={handleSubmitColor} />
+      <div className="color-container">
+        {" "}
+        {colors.map((color) => (
+          <Color key={color.id} color={color} />
+        ))}
+      </div>
+    </div>
   );
 }
 
