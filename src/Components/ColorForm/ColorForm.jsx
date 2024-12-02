@@ -1,4 +1,4 @@
-import ColorInput from "../ColorInput/ColorInput";
+import ColorInput from "../ColorInput/ColorInput.js";
 import "./ColorForm.css";
 
 export default function ColorForm({
