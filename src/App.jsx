@@ -1,17 +1,33 @@
+import { useState } from "react";
 import { initialColors } from "./lib/colors";
-import Color from "./Components/Color/Color";
 import "./App.css";
+import { uid } from "uid";
+//import useLocalStorageState from "use-local-storage-state";
+import Color from "./Components/Color/Color";
+import ColorForm from "./Components/ColorForm/ColorForm";
 
 function App() {
+  const [colors, setColors] = useState(initialColors);
+
+  const addColor = (newColor) => {
+    const newColors = [...colors, { id: uid(), ...newColor }];
+    console.log(newColors);
+    setColors(newColors);
+  };
+  //setColors();
+
   return (
     <>
       <h1>Theme Creator</h1>
-
-      {initialColors.map((color) => {
-        return <Color key={color.id} color={color} />;
-      })}
+      <ColorForm onSubmitColor={addColor} />
+      {colors.length === 0 ? (
+        <p>Add colors</p>
+      ) : (
+        colors.map((color) => {
+          return <Color key={color.id} color={color} />;
+        })
+      )}
     </>
   );
 }
-
 export default App;
